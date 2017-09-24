@@ -9,8 +9,7 @@ FROM centos:centos7
 MAINTAINER Armin Kunkel <armin@kunkel24.de>
 
 LABEL vendor=avensio \
-  org.avensio.nexus.license="Apache License, Version 2.0" \
-  org.avensio.nexus.name="Nexus Repository Manager base image with ssl only support"
+  org.avensio.nexus.name="Nexus Repository Manager image with ssl only support"
 
 # ARGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ARG SSL_STOREPASS=changeit
