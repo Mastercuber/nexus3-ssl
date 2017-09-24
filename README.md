@@ -28,7 +28,12 @@ You can pass the following arguments to the build:
 Possibilities:
 - pass no args
 - pass SSL_STOREPASS
-- pass NEXUS_VERSION
+- pass NEXUS_VERSION (only 3.x.x)
+
+If Nexus 4 becomes available or you want to use Nexus 2.x.x:  
+- pass NEXUS_VERSION and NEXUS_DOWNLOAD_URL
+
+And finally you can pass all the args together.
 
 ## Create volume to persist the sonatype-work directory (see symlink at the bottom of the Dockerfile)
 ```
