@@ -17,20 +17,6 @@ ARG SSL_KEYPASS=changeit
 ARG NEXUS_VERSION=3.5.2-01
 ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
 
-RUN yum install -y \
-  curl tar \
-  && yum clean all
-
-# install openssl
-RUN yum install -y openssl
-
-# configure java runtime
-ENV JAVA_HOME=/opt/java \
-  JAVA_VERSION_MAJOR=8 \
-  JAVA_VERSION_MINOR=144 \
-  JAVA_VERSION_BUILD=01 \
-  JAVA_DOWNLOAD_HASH=090f390dda5b47b9b721c7dfaa008135
-
 # configure nexus runtime 1/2
 ENV NEXUS_HOME=/opt/nexus/nexus-${NEXUS_VERSION}
 
@@ -41,6 +27,20 @@ ARG SSL_WORK=${NEXUS_HOME}/etc/ssl
 ENV NEXUS_DATA=/nexus-data \
   NEXUS_CONTEXT='' \
   SONATYPE_WORK=${NEXUS_HOME}/../sonatype-work
+
+# configure java runtime
+ENV JAVA_HOME=/opt/java \
+  JAVA_VERSION_MAJOR=8 \
+  JAVA_VERSION_MINOR=144 \
+  JAVA_VERSION_BUILD=01 \
+  JAVA_DOWNLOAD_HASH=090f390dda5b47b9b721c7dfaa008135
+
+RUN yum install -y \
+  curl tar \
+  && yum clean all
+
+# install openssl
+RUN yum install -y openssl
 
 # copy ssl private key and fullchain certificate
 COPY cert.key.pem ${SSL_WORK}/cert.key.pem
