@@ -20,13 +20,11 @@ ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSI
 # configure nexus runtime 1/2
 ENV NEXUS_HOME=/opt/nexus/nexus-${NEXUS_VERSION}
 
-# ARG ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ARG SSL_WORK=${NEXUS_HOME}/etc/ssl
-
 # configure nexus runtime 2/2
 ENV NEXUS_DATA=/nexus-data \
   NEXUS_CONTEXT='' \
-  SONATYPE_WORK=${NEXUS_HOME}/../sonatype-work
+  SONATYPE_WORK=${NEXUS_HOME}/../sonatype-work \
+  SSL_WORK=${NEXUS_HOME}/etc/ssl
 
 # configure java runtime
 ENV JAVA_HOME=/opt/java \
