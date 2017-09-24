@@ -25,6 +25,11 @@ You can pass the following arguments to the build:
 - NEXUS_VERSION       (default: 3.5.2-01)
 - NEXUS_DOWNLOAD_URL  (default: https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz)
 
+Possibilities:
+- pass no args
+- pass SSL_STOREPASS
+- pass NEXUS_VERSION
+
 ## Create volume to persist the sonatype-work directory (see symlink at the bottom of the Dockerfile)
 ```
 docker volume create --name nexus-data
