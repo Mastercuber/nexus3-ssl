@@ -13,7 +13,6 @@ LABEL vendor=avensio \
 
 # ARGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ARG SSL_STOREPASS=changeit
-ARG SSL_KEYPASS=changeit
 ARG NEXUS_VERSION=3.5.2-01
 ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
 
@@ -101,7 +100,6 @@ RUN ./keytool -importkeystore -noprompt \
   -srcstoretype PKCS12 \
   -srcstorepass ${SSL_STOREPASS} \
   -deststorepass ${SSL_STOREPASS} \
-  -keypass ${SSL_KEYPASS} \
   -destkeystore ${SSL_WORK}/server-keystore.jks
 
 RUN mkdir -p ${NEXUS_DATA}/etc ${NEXUS_DATA}/log ${NEXUS_DATA}/tmp ${SONATYPE_WORK} \
