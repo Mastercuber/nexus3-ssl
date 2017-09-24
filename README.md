@@ -26,24 +26,34 @@ You can pass the following arguments to the build:
 - NEXUS_DOWNLOAD_URL  (default: https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz)
 
 ## Create volume to persist the sonatype-work directory (see symlink at the bottom of the Dockerfile)
+```
 docker volume create --name nexus-data
+```
 
 ## Run the image with the recently created volume mapped to the /nexus-data directory (sonatype-work --> see symlink mentioned above)
-docker run -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8443:8443 -v nexus-data:/nexus-data avensio/nexus3-ssl
-
-The default username is 'admin' and the default password is 'admin123'!
+```
+docker run -d --restart=always -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8443:8443 -v nexus-data:/nexus-data avensio/nexus3-ssl
+```
+- access UI --> http://hostname:8081 or https://hostname:8443 (if you choose http it will redirect to https)
+- default credentials --> username: admin  
+                          password: admin123
 
 ## Add registrys to Nexus 3
 Follow the blog posts to Nexus 3 on [this](http://codeheaven.io) website to configure a Maven, NPM and Docker registry.
 
 
 ## Login to registry (internal)
+```
 docker login -u admin -p admin123 avensio.org:8082  
 docker login -u admin -p admin123 avensio.org:8083
+```
 
 ## Push to registry (internal)
+```
 docker tag nexus3-ssl avensio.org:8083/nexus3-ssl
 docker push avensio.org:8083/nexus3-ssl
-
+```
 ## Pull the image (internal)
+```
 docker pull avensio.org:8082/nexus3-ssl
+```
