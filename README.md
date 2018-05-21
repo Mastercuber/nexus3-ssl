@@ -51,7 +51,7 @@ docker run -d --restart=always -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8443:84
 ## Add registrys to Nexus 3
 Follow the blog posts to Nexus 3 on [this](http://codeheaven.io) website to configure a Maven, NPM and Docker registry.
 
-# NPM
+# npm
 ## Download from NPM Registry
 Add the following line to your ~/.npmrc to gain Download access to the registry: 
 ```
@@ -70,7 +70,7 @@ If you want to publish(upload) a npm project to the registry, add the following 
   }
 ```
 now you can just **npm pulish** your project
-# Docker 
+# docker 
 ## Download image from Docker registry (port 8082 -> download) 
 ```
 docker pull hostname.tld:8082/nexus3-ssl
@@ -89,7 +89,7 @@ docker tag nexus3-ssl hostname.tld:8083/nexus3-ssl
 docker push hostname.tld:8083/nexus3-ssl 
 ``` 
 
-# Maven 
+# maven 
 ## Download artifacts from the maven registry 
 If you only want to download from the registry, you need to add the credentials as servers to **~/.m2/settings.xml** *(for all maven builds)* and also use the new registry as a central mirror 
 ```
@@ -155,6 +155,12 @@ Add this to the **pom.xml** to be able to use **maven deploy** to push artifacts
   </distributionManagement>
 </project>
 ```
+
+# yum
+see [here](https://help.sonatype.com/repomanager3/yum-repositories#YumRepositories-ConfiguringYumClient)
+
+# pypi
+see [here](https://help.sonatype.com/repomanager3/pypi-repositories#PyPIRepositories-UploadingPyPIPackages)
 
 # Tipps
 Use a script to stop, rebuild and run the script with new **SSL-Certificate's** *(Filename: nexus3-ssl-renew.sh)*: 
