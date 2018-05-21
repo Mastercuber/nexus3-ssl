@@ -91,7 +91,7 @@ docker push hostname.tld:8083/nexus3-ssl
 
 # Maven 
 ## Download artifacts from the maven registry 
-If you only want to download from the registry, you need to add the credentials as servers to **~/.m2/settings.xml** ***(for all maven builds)*** and also use the new registry as a central mirror 
+If you only want to download from the registry, you need to add the credentials as servers to **~/.m2/settings.xml** *(for all maven builds)* and also use the new registry as a central mirror 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"
@@ -123,7 +123,7 @@ If you only want to download from the registry, you need to add the credentials 
 </settings>
 ```
 
-Use the following in the **pom.xml** ***(for each project)*** 
+Use the following in the **pom.xml** *(for each project)* 
 ```
 <project ...>
   ...
@@ -157,7 +157,7 @@ Add this to the **pom.xml** to be able to use **maven deploy** to push artifacts
 ```
 
 # Tipps
-Use a script to stop, rebuild and run the script with new **SSL-Certificate's** ***(Filename: nexus3-ssl-renew.sh)***: 
+Use a script to stop, rebuild and run the script with new **SSL-Certificate's** *(Filename: nexus3-ssl-renew.sh)*: 
 ```
 #!/bin/bash 
 cd /opt/nexus 
@@ -173,7 +173,7 @@ cp /etc/letsencrypt/live/www.kunkel24.de-001/fullchain.pem fullchain.pem
 docker build --rm=true --tag=nexus3-ssl .
 docker run -d --restart=always -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8443:8443 -v nexus-data:/nexus-data nexus3-ssl
 ```
-and now use this script as a **cronjob** ***(crontab -e)***: 
+and now use this script as a **cronjob** *(crontab -e)*: 
 ```
 35 2 * * 1 /opt/nexus/nexus3-ssl-renew.sh 
 ```
