@@ -155,3 +155,25 @@ Add this to the **pom.xml** to be able to use **maven deploy** to push artifacts
   </distributionManagement>
 </project>
 ```
+
+# Tipps
+Use a script to stop, rebuild and run the script with new **SSL-Certificate's** ***(Filename: nexus3-ssl-renew.sh)***: 
+```
+#!/bin/bash 
+cd /opt/nexus 
+# get the container id and stop it
+docker stop $(docker container ls | grep nexus3-ssl | awk '{print $1}') 
+# remove old certs
+rm cert.key.pem 
+rm fullchain.pem 
+# get new certs
+cp /etc/letsencrypt/live/www.kunkel24.de-001/privKey.pem cert.key.pem 
+cp /etc/letsencrypt/live/www.kunkel24.de-001/fullchain.pem fullchain.pem 
+# build and run the new image
+docker build --rm=true --tag=nexus3-ssl .
+docker run -d --restart=always -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8443:8443 -v nexus-data:/nexus-data nexus3-ssl
+```
+and now use this script as a **cronjob** ***(crontab -e)***: 
+```
+35 2 * * 1 /opt/nexus/nexus3-ssl-renew.sh 
+```
