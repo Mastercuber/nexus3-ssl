@@ -71,6 +71,11 @@ If you want to publish(upload) a npm project to the registry, add the following 
 ```
 now you can just **npm pulish** your project
 # Docker 
+## Download image from Docker registry (port 8082 -> download) 
+```
+docker pull hostname.tld:8082/nexus3-ssl
+```
+
 ## For uploading an image, first login to registry 
 ```
 docker login -u admin -p admin123 hostname.tld:8082   
@@ -82,12 +87,8 @@ First you need to tag the build. After that you can push it to the registry:
 ```
 docker tag nexus3-ssl hostname.tld:8083/nexus3-ssl 
 docker push hostname.tld:8083/nexus3-ssl 
-```
+``` 
 
-## Download image from Docker registry (port 8082 -> download) 
-```
-docker pull hostname.tld:8082/nexus3-ssl
-```
 # Maven 
 ## Download artifacts from the maven registry 
 If you only want to download from the registry, you need to add the credentials as servers to **~/.m2/settings.xml** ***(for all maven builds)*** and also use the new registry as a central mirror 
