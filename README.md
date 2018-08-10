@@ -173,8 +173,8 @@ docker stop $(docker container ls | grep nexus3-ssl | awk '{print $1}')
 rm cert.key.pem 
 rm fullchain.pem 
 # get new certs
-cp /etc/letsencrypt/live/www.kunkel24.de-001/privKey.pem cert.key.pem 
-cp /etc/letsencrypt/live/www.kunkel24.de-001/fullchain.pem fullchain.pem 
+cp /path/to/privKey.pem cert.key.pem 
+cp /path/to/fullchain.pem fullchain.pem 
 # build and run the new image
 docker build --rm=true --tag=nexus3-ssl .
 docker run -d --restart=always -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 8443:8443 -v nexus-data:/nexus-data nexus3-ssl
