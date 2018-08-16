@@ -8,8 +8,8 @@ FROM centos:centos7
 
 MAINTAINER Armin Kunkel <armin@kunkel24.de>
 
-LABEL vendor=avensio \
-  org.avensio.nexus.name="Nexus Repository Manager image with ssl only support"
+LABEL vendor=kunkel24 \
+  de.kunkel24.nexus.name="Nexus Repository Manager image with ssl only support"
 
 # ARGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ARG SSL_STOREPASS=changeit
